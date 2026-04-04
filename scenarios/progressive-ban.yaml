@@ -1,0 +1,14 @@
+name: progressive-ban
+description: "Escalate ban duration for repeat offenders (recidive replacement)"
+type: counter
+filter: "evt.service == 'ssh' || evt.service == 'http'"
+group_by: evt.source_ip
+capacity: 5
+window: 86400s
+blackhole: 3600s
+labels:
+  category: recidive
+  service: mixed
+decision:
+  type: ban
+  duration: 168h

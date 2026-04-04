@@ -1,0 +1,14 @@
+name: http-flood
+description: "Detect HTTP flood (100+ requests/sec from same IP)"
+type: leaky_bucket
+filter: "evt.service == 'http'"
+group_by: evt.source_ip
+capacity: 100
+leak_interval: 1s
+blackhole: 30s
+labels:
+  category: ddos
+  service: http
+decision:
+  type: ban
+  duration: 30m

@@ -1,0 +1,14 @@
+name: admin-brute-force
+description: "Detect admin panel brute force (3+ failed logins in 2m)"
+type: leaky_bucket
+filter: "evt.service == 'http' && evt.status == '401' && evt.action == 'request'"
+group_by: evt.source_ip
+capacity: 3
+leak_interval: 120s
+blackhole: 5m
+labels:
+  category: brute-force
+  service: http
+decision:
+  type: ban
+  duration: 24h

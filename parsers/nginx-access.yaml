@@ -1,0 +1,9 @@
+name: nginx-access
+description: "Parse Nginx access log (combined format)"
+source: nginx-access
+stage: s01-parse
+filter: "source == 'nginx-access'"
+pattern: '(?P<source_ip>[0-9a-fA-F.:]+) - (?P<user>\S+) \[(?P<timestamp>[^\]]+)\] "(?P<method>\w+) (?P<path>\S+) HTTP/(?P<http_version>[\d.]+)" (?P<status>\d+) (?P<body_bytes>\d+) "(?P<referrer>[^"]*)" "(?P<user_agent>[^"]*)"'
+statics:
+  service: http
+  action: request

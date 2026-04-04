@@ -1,0 +1,14 @@
+name: http-probe
+description: "Detect web vulnerability scanning (10+ 404s in 30s)"
+type: leaky_bucket
+filter: "evt.service == 'http' && evt.status == '404'"
+group_by: evt.source_ip
+capacity: 10
+leak_interval: 30s
+blackhole: 1m
+labels:
+  category: scanner
+  service: http
+decision:
+  type: ban
+  duration: 1h

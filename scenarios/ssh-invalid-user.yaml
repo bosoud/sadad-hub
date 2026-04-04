@@ -1,0 +1,14 @@
+name: ssh-invalid-user
+description: "Detect SSH invalid user attempts (3+ in 30s)"
+type: leaky_bucket
+filter: "evt.service == 'ssh' && evt.action == 'invalid_user'"
+group_by: evt.source_ip
+capacity: 3
+leak_interval: 30s
+blackhole: 2m
+labels:
+  category: brute-force
+  service: ssh
+decision:
+  type: ban
+  duration: 4h

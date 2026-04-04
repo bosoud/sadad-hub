@@ -1,0 +1,11 @@
+name: nginx-error
+description: "Parse Nginx error log"
+source: nginx-error
+stage: s01-parse
+filter: "source == 'nginx-error'"
+patterns:
+  client_error: '(?P<timestamp>\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}) \[(?P<level>\w+)\] .+client: (?P<source_ip>[0-9a-fA-F.:]+).+request: "(?P<method>\w+) (?P<path>\S+)'
+  limit_req: '(?P<timestamp>\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}) \[(?P<level>\w+)\] .+limiting requests.+client: (?P<source_ip>[0-9a-fA-F.:]+)'
+  upstream_error: '(?P<timestamp>\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}) \[(?P<level>\w+)\] .+upstream.+client: (?P<source_ip>[0-9a-fA-F.:]+)'
+statics:
+  service: http

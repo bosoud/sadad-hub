@@ -1,0 +1,10 @@
+name: strapi
+description: "Parse Strapi application logs (Docker)"
+source: strapi
+stage: s01-parse
+filter: "source == 'strapi'"
+patterns:
+  admin_auth_fail: '(?P<timestamp>\S+).+admin.+authentication.+fail.+(?P<source_ip>\d+\.\d+\.\d+\.\d+)'
+  request: '(?P<method>\w+) (?P<path>/\S+) (?P<status>\d+) .+ - (?P<response_time>[\d.]+) ms'
+statics:
+  service: strapi

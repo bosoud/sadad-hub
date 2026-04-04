@@ -1,0 +1,14 @@
+name: ssh-brute-force
+description: "Detect SSH brute force (5+ failed logins in 60s)"
+type: leaky_bucket
+filter: "evt.service == 'ssh' && evt.action == 'failed_password'"
+group_by: evt.source_ip
+capacity: 5
+leak_interval: 60s
+blackhole: 2m
+labels:
+  category: brute-force
+  service: ssh
+decision:
+  type: ban
+  duration: 4h

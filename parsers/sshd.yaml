@@ -1,0 +1,13 @@
+name: sshd
+description: "Parse sshd authentication logs"
+source: sshd
+stage: s01-parse
+filter: "source == 'sshd'"
+patterns:
+  failed_password: 'Failed password for (?P<user>\S+) from (?P<source_ip>[0-9a-fA-F.:]+) port (?P<port>\d+)'
+  invalid_user: 'Invalid user (?P<user>\S+) from (?P<source_ip>[0-9a-fA-F.:]+) port (?P<port>\d+)'
+  accepted: 'Accepted (?P<method>\S+) for (?P<user>\S+) from (?P<source_ip>[0-9a-fA-F.:]+) port (?P<port>\d+)'
+  connection_closed: 'Connection closed by (?P<source_ip>[0-9a-fA-F.:]+) port (?P<port>\d+)'
+  disconnected: 'Disconnected from (?P<source_ip>[0-9a-fA-F.:]+) port (?P<port>\d+)'
+statics:
+  service: ssh

@@ -1,0 +1,82 @@
+[
+  {
+    "name": "nginx-access",
+    "type": "parser",
+    "description": "Parse Nginx access log (combined format)",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "parsers/nginx-access.yaml"
+  },
+  {
+    "name": "nginx-error",
+    "type": "parser",
+    "description": "Parse Nginx error log (client errors, rate limiting, upstream)",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "parsers/nginx-error.yaml"
+  },
+  {
+    "name": "sshd",
+    "type": "parser",
+    "description": "Parse sshd authentication logs (failed, invalid, accepted)",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "parsers/sshd.yaml"
+  },
+  {
+    "name": "strapi",
+    "type": "parser",
+    "description": "Parse Strapi application logs (Docker)",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "parsers/strapi.yaml"
+  },
+  {
+    "name": "ssh-brute-force",
+    "type": "scenario",
+    "description": "Detect SSH brute force (5+ failed logins in 60s)",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "scenarios/ssh-brute-force.yaml"
+  },
+  {
+    "name": "ssh-invalid-user",
+    "type": "scenario",
+    "description": "Detect SSH invalid user attempts (3+ in 30s)",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "scenarios/ssh-invalid-user.yaml"
+  },
+  {
+    "name": "http-probe",
+    "type": "scenario",
+    "description": "Detect web vulnerability scanning (10+ 404s in 30s)",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "scenarios/http-probe.yaml"
+  },
+  {
+    "name": "http-flood",
+    "type": "scenario",
+    "description": "Detect HTTP flood (100+ requests/sec from same IP)",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "scenarios/http-flood.yaml"
+  },
+  {
+    "name": "admin-brute-force",
+    "type": "scenario",
+    "description": "Detect admin panel brute force (3+ failed logins in 2m)",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "scenarios/admin-brute-force.yaml"
+  },
+  {
+    "name": "progressive-ban",
+    "type": "scenario",
+    "description": "Escalate ban duration for repeat offenders (recidive replacement)",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "scenarios/progressive-ban.yaml"
+  }
+]
