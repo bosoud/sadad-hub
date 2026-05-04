@@ -1,0 +1,89 @@
+apiVersion: qas/v1
+kind: Product
+metadata:
+  name: sadad-hub
+  role: Content
+  category: content
+  version: 1.0.0
+  description: Detection content registry — parsers and scenarios for Sadad
+  author: bosoud
+  homepage: https://github.com/bosoud/sadad-hub
+  repo: bosoud/sadad-hub
+  license: TBD
+
+spec:
+  runtime:
+    type: content
+    contentDir: .                       # parsers/ and scenarios/ at repo root
+    ports: []
+
+  endpoints:
+    # Content products advertise health by serving the index.json over HTTPS.
+    # The Console fetches and validates this on install.
+    health: https://raw.githubusercontent.com/bosoud/sadad-hub/main/index.json
+
+  capabilities:
+    - parsers
+    - scenarios
+    - hub-content
+
+  requires:
+    products:
+      - name: sadad
+        version: ">=0.3.0"
+        optional: false                 # without Sadad this content has no consumer
+    system: []
+    arch: ["any"]
+    os: ["any"]
+
+  lifecycle:
+    install:
+      script: ""                        # `sadadctl hub install <name>` does the work
+      preflight: []
+    upgrade:
+      script: ""
+      compatibility: backward
+    uninstall:
+      script: ""
+      dataPolicy: preserve              # leaving installed content alone on Sadad uninstall is fine
+    healthCheck:
+      script: ""
+      intervalSeconds: 3600             # content rarely changes
+
+  config:
+    path: ""                            # no per-host config — content is the config
+    schema: ""
+    examplePath: ""
+    secretsEnv: []
+
+  data:
+    paths: []
+    backup:
+      hook: ""
+      retentionDays: 0
+    restore:
+      hook: ""
+
+  auth:
+    issuesTokens: false
+    verifyKeys: []
+    requiredScopes: []
+
+  plans:
+    - name: free
+      default: true
+      description: Community parsers and scenarios
+
+  audit:
+    emitsEvents: []                     # content has no runtime, emits no events
+
+  catalog:
+    icon: collection
+    color: "#6c757d"
+    tags:
+      - content
+      - parsers
+      - scenarios
+      - sadad
+    docs: https://github.com/bosoud/sadad-hub#readme
+    support: https://github.com/bosoud/sadad-hub/issues
