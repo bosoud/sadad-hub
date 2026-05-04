@@ -6,6 +6,8 @@ Community parsers and scenarios for [Sadad](https://github.com/bosoud/sadad).
 
 This repo is the content registry for Sadad — parsers and scenarios, no runtime. Edit/test via the Sadad console. For **cross-product views and install/uninstall** of Sadad itself, use the [Qas Console](https://github.com/bosoud/qas-console).
 
+Suite contracts live in [bosoud/qas/SPEC](https://github.com/bosoud/qas/tree/main/SPEC). sadad-hub is `runtime.type: content` in the [Qas manifest schema](https://github.com/bosoud/qas/blob/main/SPEC/qas-manifest.md) — it has no executable, no LAPI, and the `index.json` here serves as the suite-level health endpoint.
+
 ## Install
 
 ```bash
