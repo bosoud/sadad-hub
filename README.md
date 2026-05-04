@@ -2,6 +2,10 @@
 
 Community parsers and scenarios for [Sadad](https://github.com/bosoud/sadad).
 
+## In the Qas Suite
+
+This repo is the content registry for Sadad — parsers and scenarios, no runtime. Edit/test via the Sadad console. For **cross-product views and install/uninstall** of Sadad itself, use the [Qas Console](https://github.com/bosoud/qas-console).
+
 ## Install
 
 ```bash
