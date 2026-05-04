@@ -78,5 +78,53 @@
     "author": "sadad",
     "version": "1.0.0",
     "file": "scenarios/progressive-ban.yaml"
+  },
+  {
+    "name": "nginx-noscript",
+    "type": "scenario",
+    "description": "Detect probes for PHP/JSP/CGI/ASP scripts (5+ 4xx in 60s)",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "scenarios/nginx-noscript.yaml"
+  },
+  {
+    "name": "nginx-bad-request",
+    "type": "scenario",
+    "description": "Detect malformed/injection traffic (5+ HTTP 400 in 60s)",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "scenarios/nginx-bad-request.yaml"
+  },
+  {
+    "name": "wordpress-probe",
+    "type": "scenario",
+    "description": "Detect WordPress admin/login/xmlrpc probing (3+ in 60s)",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "scenarios/wordpress-probe.yaml"
+  },
+  {
+    "name": "dotfile-probe",
+    "type": "scenario",
+    "description": "Detect attempts to fetch .env, .git, .ssh, .aws, etc. — single hit bans",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "scenarios/dotfile-probe.yaml"
+  },
+  {
+    "name": "bad-bots",
+    "type": "scenario",
+    "description": "Detect known offensive scanning tools by User-Agent (single hit bans)",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "scenarios/bad-bots.yaml"
+  },
+  {
+    "name": "xmlrpc-flood",
+    "type": "scenario",
+    "description": "Detect WordPress xmlrpc.php POST flood (10+ POSTs in 30s)",
+    "author": "sadad",
+    "version": "1.0.0",
+    "file": "scenarios/xmlrpc-flood.yaml"
   }
 ]

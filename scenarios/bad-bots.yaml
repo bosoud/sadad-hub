@@ -1,0 +1,14 @@
+name: bad-bots
+description: "Detect known offensive scanning tools by User-Agent (single hit bans)"
+type: leaky_bucket
+filter: "evt.service == 'http' && evt.action == 'request' && evt.user_agent matches '(?i)sqlmap|nikto|nessus|wpscan|masscan|zgrab|nmap|gobuster|dirbuster|hydra|paros|w3af|havij|brutus|libwww-perl|x00scan|acunetix'"
+group_by: evt.source_ip
+capacity: 1
+leak_interval: 60s
+blackhole: 30m
+labels:
+  category: bad-bot
+  service: http
+decision:
+  type: ban
+  duration: 24h

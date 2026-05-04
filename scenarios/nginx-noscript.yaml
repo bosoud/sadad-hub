@@ -1,0 +1,14 @@
+name: nginx-noscript
+description: "Detect probes for PHP/JSP/CGI/ASP scripts (5+ 4xx in 60s)"
+type: leaky_bucket
+filter: "evt.service == 'http' && evt.action == 'request' && (evt.status == '404' || evt.status == '403') && evt.path matches '\\.(php|phtml|aspx?|jsp|cgi|pl|sh)([?/].*)?$'"
+group_by: evt.source_ip
+capacity: 5
+leak_interval: 60s
+blackhole: 5m
+labels:
+  category: scanner
+  service: http
+decision:
+  type: ban
+  duration: 6h

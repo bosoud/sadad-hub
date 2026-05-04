@@ -1,0 +1,14 @@
+name: dotfile-probe
+description: "Detect attempts to fetch .env, .git, .ssh, .aws, etc. — single hit bans"
+type: leaky_bucket
+filter: "evt.service == 'http' && evt.action == 'request' && evt.path matches '/\\.env|/\\.git/|/\\.aws/|/\\.ssh/|/\\.htaccess|/\\.htpasswd|/\\.svn/'"
+group_by: evt.source_ip
+capacity: 1
+leak_interval: 60s
+blackhole: 30m
+labels:
+  category: scanner
+  service: http
+decision:
+  type: ban
+  duration: 24h

@@ -1,0 +1,14 @@
+name: wordpress-probe
+description: "Detect WordPress admin/login/xmlrpc probing (3+ in 60s)"
+type: leaky_bucket
+filter: "evt.service == 'http' && evt.action == 'request' && evt.path matches '/wp-login\\.php|/wp-admin|/xmlrpc\\.php|/wp-content/plugins/'"
+group_by: evt.source_ip
+capacity: 3
+leak_interval: 60s
+blackhole: 5m
+labels:
+  category: scanner
+  service: http
+decision:
+  type: ban
+  duration: 12h

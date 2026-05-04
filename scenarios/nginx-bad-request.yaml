@@ -1,0 +1,14 @@
+name: nginx-bad-request
+description: "Detect malformed/injection traffic (5+ HTTP 400 in 60s)"
+type: leaky_bucket
+filter: "evt.service == 'http' && evt.action == 'request' && evt.status == '400'"
+group_by: evt.source_ip
+capacity: 5
+leak_interval: 60s
+blackhole: 2m
+labels:
+  category: scanner
+  service: http
+decision:
+  type: ban
+  duration: 1h
